@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gemma - Landing Page</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Geist Mono', monospace;
+            overflow-x: hidden;
+            background: #000;
+            color: #ffffff;
+        }
+
+        /* Video Background */
+        .video-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        #bg-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center center;
+        }
+
+        /* Main Container */
+        .container {
+            position: relative;
+            z-index: 2;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        /* Logo with Difference Blend Mode */
+        .logo-container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo {
+            width: clamp(250px, 40vw, 500px);
+            height: auto;
+            filter: invert(1) brightness(2);
+            mix-blend-mode: exclusion;
+            transform: rotate(-8deg);
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            gap: 2rem;
+            padding-bottom: 2rem;
+        }
+
+        nav a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: clamp(0.875rem, 2vw, 1rem);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+            text-transform: lowercase;
+            padding: 0.5rem 0;
+            transition: all 0.3s ease;
+        }
+
+        nav a::after {
+            content: '-';
+            margin: 0 1rem;
+            opacity: 0.5;
+        }
+
+        nav a:last-child::after {
+            content: '';
+            margin: 0;
+        }
+
+        nav a:hover {
+            opacity: 0.7;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .container {
+                padding: 1.5rem;
+            }
+
+            nav {
+                gap: 0;
+                padding-bottom: 1.5rem;
+            }
+
+            nav a::after {
+                margin: 0 0.75rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 0.5rem;
+                padding-bottom: 1rem;
+            }
+
+            nav a {
+                font-size: 0.75rem;
+            }
+
+            nav a::after {
+                margin: 0 0.5rem;
+            }
+
+            .container {
+                padding: 1rem;
+            }
+        }
+
+        @media (min-width: 1440px) {
+            nav {
+                gap: 2.5rem;
+                padding-bottom: 3rem;
+            }
+
+            .container {
+                padding: 3rem;
+            }
+        }
+
+        @media (min-width: 769px) and (max-width: 1024px) and (orientation: landscape) {
+            .container {
+                padding: 2rem;
+            }
+
+            nav {
+                padding-bottom: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Video Background -->
+    <div class="video-container">
+        <video id="bg-video" autoplay muted loop playsinline>
+            <source src="gemma-b.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- <div class="logo-container">
+            <img src="logo-gemma.png" alt="Gemma Logo" class="logo">
+        </div> -->
+
+        <nav>
+            <a href="#home">home</a>
+            <a href="#music">music</a>
+            <a href="#shop">shop</a>
+            <a href="#tour">tour</a>
+            <a href="#subscribe">subscribe</a>
+        </nav>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const video = document.getElementById('bg-video');
+            
+            video.play().catch(function(error) {
+                console.log('Auto-play prevented:', error);
+            });
+
+            document.addEventListener('visibilitychange', function() {
+                if (!document.hidden) {
+                    video.play();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
